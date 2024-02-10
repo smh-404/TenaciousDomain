@@ -12,7 +12,7 @@ The tool collects the following information:
 - Subdomains (from brute-forcing and certificates)
 - Open port info & banners
 - Domain/website reputation & rankings (work in progress!)
-- Website header (work in progress!)
+- Website headers (work in progress!)
 
 
 **Part 2: Analysis - work in progress!**
