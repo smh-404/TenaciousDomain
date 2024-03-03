@@ -15,7 +15,8 @@ def getInput():
 
 
 def getWhois(domain):
-    domainWhois = whois.whois(domain)  # 👉️ Get Domain Info
+    # Getting Domain Info
+    domainWhois = whois.whois(domain)
     return domainWhois
 
 
