@@ -20,7 +20,7 @@ The tool collects the following information:
 The tool then performs analysis on the collected information to identify vulnerabilities, exposures, and misconfigurations.
 
 
-**Part 3: Reporting - work in progress!**
+**Part 3: Reporting**
 
 The tool then visually represents the collected information and analysis in a user friendly format.
 
