@@ -21,7 +21,7 @@ def getWhois(domain):
 
 
 def getDns(domain):
-    # Getting the A record (IPv4 address)
+    # Getting DNS Records
     aRecord = ""
     try:
         response = dns.resolver.resolve(domain, 'A')
