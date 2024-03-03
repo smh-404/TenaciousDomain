@@ -11,7 +11,7 @@ The tool collects the following information:
 - SSL/TLS certificates
 - Subdomains (from brute-forcing and certificates)
 - Open port info & banners
-- Domain/website reputation & rankings (work in progress!)
+- Domain/website reputation & rankings
 - Website headers (work in progress!)
 
 
