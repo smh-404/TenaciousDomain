@@ -16,13 +16,11 @@ def getInput():
 
 
 def getWhois(domain):
-    # Getting Domain Info
     domainWhois = whois.whois(domain)
     return domainWhois
 
 
 def getDns(domain):
-    # Getting DNS Records
     aRecord = ""
     try:
         response = dns.resolver.resolve(domain, 'A')
