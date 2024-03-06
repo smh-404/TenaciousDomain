@@ -792,4 +792,4 @@ htmlBody = '''
 file = open("Report.html", "w")
 file.writelines(htmlBody)
 
-print("Report Created")
+print("\nReport Created!")
