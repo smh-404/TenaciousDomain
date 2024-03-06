@@ -11,6 +11,7 @@ virusTotalApiKey = ''
 
 def getInput():
     domain = input("Enter a domain to search:\n")
+    domain = domain.strip()
     return domain
 
 
@@ -158,6 +159,56 @@ def queryVT(domain, virusTotalApiKey):
     return results
 
 
+def getHeaders(domain):
+    url = "http://" + domain
+    res = requests.get(url)
+    headers = res.headers
+
+    try:
+        headerServer = headers['Server']
+    except:
+        headerServer = ""
+
+    try:
+        headerXPoweredBy = headers['X-Powered-By']
+    except:
+        headerXPoweredBy = ""
+
+    try:
+        headerSTS = headers['Strict-Transport-Security']
+    except:
+        headerSTS = ""
+
+    try:
+        headerCSP = headers['Content-Security-Policy']
+    except:
+        headerCSP = ""
+
+    try:
+        headerXFrameOptions = headers['X-Frame-Options']
+    except:
+        headerXFrameOptions = ""
+
+    try:
+        headerXContentTypeOptions = headers['X-Content-Type-Options']
+    except:
+        headerXContentTypeOptions = ""
+
+    try:
+        headerXXSSProtection = headers['X-XSS-Protection']
+    except:
+        headerXXSSProtection = ""
+
+    try:
+        headerReferrerPolicy = headers['Referrer-Policy']
+    except:
+        headerReferrerPolicy = ""
+
+    return headerServer, headerXPoweredBy, headerSTS, headerCSP, headerXFrameOptions, headerXContentTypeOptions, headerXXSSProtection, headerReferrerPolicy
+
+
+
+
 domain = getInput()
 print("Initiating enrichment process for domain", domain, "...")
 
@@ -199,6 +250,10 @@ try:
 except:
     maliciousStatus = ""
     popularityRanks = ""
+
+
+headerServer, headerXPoweredBy, headerSTS, headerCSP, headerXFrameOptions, headerXContentTypeOptions, headerXXSSProtection, headerReferrerPolicy = getHeaders(domain)
+
 
 
 print("Data points collected ...")
@@ -317,13 +372,15 @@ for row in shodanIpInfo['data']:
         tlsPublicKeyType = row['ssl']['cert']['pubkey']['type']
         tlsCipherName = row['ssl']['cipher']['name']
         tlsCipherBits = row['ssl']['cipher']['bits']
-for res in tlsResults:
-    if "-" not in res:
-        if tlsVersions == "":
-            tlsVersions = res
-        else:
-            tlsVersions = tlsVersions + ", " + res
-
+try:
+    for res in tlsResults:
+        if "-" not in res:
+            if tlsVersions == "":
+                tlsVersions = res
+            else:
+                tlsVersions = tlsVersions + ", " + res
+except:
+    tlsVersions = ""
 # Creating Certificate Table (from transparency logs)
 certificatesHtmlTable = ""
 for row in domainCert:
@@ -628,6 +685,46 @@ htmlBody = '''
       </div>
 
     <div class="card">
+      <h2>Website Headers</h2>
+      <h5>Information found within the website's security headers:</h5>
+      <table>
+          <tr>
+            <td><b>Server</b></td>
+            <td>{headerServer}</td>
+          </tr>
+          <tr>
+            <td><b>X-Powered-By</b></td>
+            <td>{headerXPoweredBy}</td>
+          </tr>
+          <tr>
+            <td><b>Strict-Transport-Security</b></td>
+            <td>{headerSTS}</td>
+          </tr>
+          <tr>
+            <td><b>Content-Security-Policy</b></td>
+            <td>{headerCSP}</td>
+          </tr>
+          <tr>
+            <td><b>X-Frame-Options</b></td>
+            <td>{headerXFrameOptions}</td>
+          </tr>
+          <tr>
+            <td><b>X-Content-Type-Options</b></td>
+            <td>{headerXContentTypeOptions}</td>
+          </tr>
+          <tr>
+            <td><b>X-XSS-Protection</b></td>
+            <td>{headerXXSSProtection}</td>
+          </tr>
+          <tr>
+            <td><b>Referrer-Policy</b></td>
+            <td>{headerReferrerPolicy}</td>
+          </tr>
+        </table>
+      </div>
+    
+    
+    <div class="card">
       <h2>Active Website SSL/TLS Certificate</h2>
       <h5>Information collected from the active certificate configured on the website at this point in time:</h5>
       <table>
@@ -679,7 +776,7 @@ htmlBody = '''
 
 
     <div class="card">
-      <h3>Github Link:</h3>
+      <h3>More information can be found on Github</h3>
       <p><a href="https://github.com/smh-404/TenaciousDomain">https://github.com/smh-404/TenaciousDomain</a></p>
     </div>
   </div>
