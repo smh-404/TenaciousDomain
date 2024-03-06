@@ -12,7 +12,7 @@ The tool collects the following information:
 - Subdomains (from brute-forcing and certificates)
 - Open port info & banners
 - Domain/website reputation & rankings
-- Website headers (work in progress!)
+- Website headers
 
 
 **Part 2: Analysis - work in progress!**
@@ -47,7 +47,6 @@ The tool then visually represents the collected information and analysis in a us
 # Notes
 
 **Under development:**
-- Including website header data points.
 - Improving the visual aspect of the report.
 - The vulnerability report section.
 
