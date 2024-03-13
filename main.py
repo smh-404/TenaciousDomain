@@ -77,12 +77,12 @@ def getDns(domain):
         response = dns.resolver.resolve(domain, 'TXT')
         for row in response:
             if "v=spf" not in str(row.to_text()):
-                if txtRecord == "":
+                if txtRecord == "None":
                     txtRecord = row.to_text()
                 else:
                     txtRecord = txtRecord + ", " + row.to_text()
             else:
-                if spfRecord == "":
+                if spfRecord == "None":
                     spfRecord = row.to_text()
                 else:
                     spfRecord = spfRecord + ", " + row.to_text()
@@ -301,32 +301,76 @@ file.close()
 print("Data points parsed ...")
 
 # Extracting WHOIS Information
-domainWhoisDomainName = domainWhois['domain_name']
-domainWhoisCreationDate = domainWhois['creation_date']
-domainWhoisExpiryDate = domainWhois['expiration_date']
-domainWhoisRegistrar = domainWhois['registrar']
-domainWhoisName = domainWhois['name']
+try:
+    domainWhoisDomainName = domainWhois['domain_name']
+except:
+    domainWhoisDomainName = "None"
+try:
+    domainWhoisCreationDate = domainWhois['creation_date']
+except:
+    domainWhoisCreationDate = "None"
+try:
+    domainWhoisExpiryDate = domainWhois['expiration_date']
+except:
+    domainWhoisExpiryDate = "None"
+try:
+    domainWhoisRegistrar = domainWhois['registrar']
+except:
+    domainWhoisRegistrar = "None"
+try:
+    domainWhoisName = domainWhois['name']
+except:
+    domainWhoisName = "None"
 try:
     domainWhoisOrg = domainWhois['org']
 except:
     domainWhoisOrg = "None"
-domainWhoisEmails = domainWhois['emails']
-domainWhoisCity = domainWhois['city']
-domainWhoisAddress = domainWhois['address']
+try:
+    domainWhoisEmails = domainWhois['emails']
+except:
+    domainWhoisEmails = "None"
+try:
+    domainWhoisCity = domainWhois['city']
+except:
+    domainWhoisCity = "None"
+try:
+    domainWhoisAddress = domainWhois['address']
+except:
+    domainWhoisAddress = "None"
 
 # Extracting Shodan Information
-shodanIpInfoISP = shodanIpInfo['isp']
-shodanIPInfoCountry = shodanIpInfo['country_name']
-shodanIpInfoCity = shodanIpInfo['city']
-shodanIpInfoOS = shodanIpInfo['os']
-shodanIpInfoPorts = shodanIpInfo['ports']
-shodanIpInfoHostnames = shodanIpInfo['hostnames']
+try:
+    shodanIpInfoISP = shodanIpInfo['isp']
+except:
+    shodanIpInfoISP = "None"
+try:
+    shodanIPInfoCountry = shodanIpInfo['country_name']
+except:
+    shodanIPInfoCountry = "None"
+try:
+    shodanIpInfoCity = shodanIpInfo['city']
+except:
+    shodanIpInfoCity = "None"
+try:
+    shodanIpInfoOS = shodanIpInfo['os']
+except:
+    shodanIpInfoOS = "None"
+try:
+    shodanIpInfoPorts = shodanIpInfo['ports']
+except:
+    shodanIpInfoPorts = "None"
+try:
+    shodanIpInfoHostnames = shodanIpInfo['hostnames']
+except:
+    shodanIpInfoHostnames = "None"
 try:
       shodanIpInfoVulns = shodanIpInfo['vulns']
 except:
       shodanIpInfoVulns = "None"
-shodanIpInfoTags = shodanIpInfo['tags']
-
+try:
+    shodanIpInfoTags = shodanIpInfo['tags']
+except:
+    shodanIpInfoTags = "None"
 # Extracting Malicious Status (from VirusTotal)
 try:
     maliciousStatusHarmless = maliciousStatus['harmless']
@@ -360,16 +404,20 @@ tlsPublicKeyType = ""
 tlsCipherName = ""
 tlsCipherBits = ""
 
-for row in shodanIpInfo['data']:
-    if row['port'] == 443:
-        # print(row)
-        tlsResults = row['ssl']['versions']
-        # print(row['ssl']['cipher'])
-        tlsSigAlg = row['ssl']['cert']['sig_alg']
-        tlsPublicKeyBits = row['ssl']['cert']['pubkey']['bits']
-        tlsPublicKeyType = row['ssl']['cert']['pubkey']['type']
-        tlsCipherName = row['ssl']['cipher']['name']
-        tlsCipherBits = row['ssl']['cipher']['bits']
+try:
+    for row in shodanIpInfo['data']:
+        if row['port'] == 443:
+            # print(row)
+            tlsResults = row['ssl']['versions']
+            # print(row['ssl']['cipher'])
+            tlsSigAlg = row['ssl']['cert']['sig_alg']
+            tlsPublicKeyBits = row['ssl']['cert']['pubkey']['bits']
+            tlsPublicKeyType = row['ssl']['cert']['pubkey']['type']
+            tlsCipherName = row['ssl']['cipher']['name']
+            tlsCipherBits = row['ssl']['cipher']['bits']
+except:
+    print("No port 443 detected")
+
 try:
     for res in tlsResults:
         if "-" not in res:
@@ -774,7 +822,7 @@ htmlBody = '''
 
 
     <div class="card">
-      <h3>More information can be found on Github</h3>
+      <h3>Github Link:</h3>
       <p><a href="https://github.com/smh-404/TenaciousDomain">https://github.com/smh-404/TenaciousDomain</a></p>
     </div>
   </div>
