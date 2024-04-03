@@ -903,7 +903,6 @@ if "v=spf" not in (str(domainDns['spfRecord'])).lower():
 if "v=dmarc" not in (str(domainDns['dmarcRecord'])).lower():
     vulnNoDmarc = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
 
-print(shodanIpInfoPorts)
 if 445 in shodanIpInfoPorts:
     vulnPort445 = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
 if 3389 in shodanIpInfoPorts:
