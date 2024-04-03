@@ -36,11 +36,15 @@ The tool then visually represents the collected information and analysis in a us
 3. Run the script
 4. Enter a domain to search for:
 
-![image](https://github.com/smh-404/TenaciousDomain/assets/153841753/9909a9dd-b899-4299-9b07-dbcc75bdf872)
+![image](https://github.com/smh-404/TenaciousDomain/assets/153841753/4b1131f5-0dfe-4519-b78c-a7e0afabd50c)
 
-5. View the report:
 
-![image](https://github.com/smh-404/TenaciousDomain/assets/153841753/425443e0-7316-40ee-8c61-b2eae92ec7f6)
+5. View the domain analysis report:
+![image](https://github.com/smh-404/TenaciousDomain/assets/153841753/37f92969-7f46-47a3-aa26-3b804ad07487)
+
+6. View the domain vulnerability report:
+![image](https://github.com/smh-404/TenaciousDomain/assets/153841753/d59808ff-6ac5-4b2c-9077-63da74a92ee0)
+
 
 
 
