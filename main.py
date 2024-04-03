@@ -856,7 +856,7 @@ htmlBody = '''
 file = open("Report.html", "w")
 file.writelines(htmlBody)
 
-print("\nReport Created!")
+print("Report Created!")
 
 
 #####################################################
