@@ -15,7 +15,7 @@ The tool collects the following information:
 - Website headers
 
 
-**Part 2: Analysis - work in progress!**
+**Part 2: Analysis**
 
 The tool then performs analysis on the collected information to identify vulnerabilities, exposures, and misconfigurations.
 
@@ -48,7 +48,6 @@ The tool then visually represents the collected information and analysis in a us
 
 **Under development:**
 - Improving the visual aspect of the report.
-- The vulnerability report section.
 
 If you have any questions, suggestions, or feedback, feel free to reach out to me!
 
