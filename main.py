@@ -416,7 +416,7 @@ try:
             tlsCipherName = row['ssl']['cipher']['name']
             tlsCipherBits = row['ssl']['cipher']['bits']
 except:
-    print("No port 443 detected")
+    pass
 
 try:
     for res in tlsResults:
@@ -899,43 +899,28 @@ vulnWhoisPersonalEmail = "None"
 
 if "v=spf" not in (str(domainDns['spfRecord'])).lower():
     vulnNoSpf = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
-    print("No SPF")
-else:
-    print("SPF Configured")
 
 if "v=dmarc" not in (str(domainDns['dmarcRecord'])).lower():
     vulnNoDmarc = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
-    print("No DMARC")
-else:
-    print("DMARC Configured")
 
 print(shodanIpInfoPorts)
 if 445 in shodanIpInfoPorts:
-    print("Port 445 found")
     vulnPort445 = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
 if 3389 in shodanIpInfoPorts:
-    print("Port 3389 found")
     vulnPort3389 = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
 if 137 in shodanIpInfoPorts:
-    print("Port 137 found")
     vulnPort137 = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
 if 139 in shodanIpInfoPorts:
-    print("Port 139 found")
     vulnPort139 = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
 if 20 in shodanIpInfoPorts:
-    print("Port 20 found")
     vulnPort20 = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
 if 21 in shodanIpInfoPorts:
-    print("Port 21 found")
     vulnPort21 = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
 if 22 in shodanIpInfoPorts:
-    print("Port 22 found")
     vulnPort22 = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
 if 23 in shodanIpInfoPorts:
-    print("Port 23 found")
     vulnPort23 = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
 if 3306 in shodanIpInfoPorts:
-    print("Port 3306 found")
     vulnPort3306 = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
 
 if maliciousStatusMalicious > 0:
@@ -947,16 +932,10 @@ if shodanIpInfoVulns != "None":
     vulnCve = '<b><FONT COLOR="#ff0000"> ' + str(shodanIpInfoVulns) + '</FONT></b>'
 
 if any(i.isdigit() for i in str(headerServer)):
-    print("Webserver Version Found")
     vulnWebsiteServerVersionExposed = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
-else:
-    print("No webserver version found")
 
 if any(i.isdigit() for i in str(headerXPoweredBy)):
-    print("Xpowered by Version Found")
     vulnWebsiteXPoweredByExposed = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
-else:
-    print("No Xpowered by version found")
 
 if headerSTS == "":
     vulnWebsiteNoSTS = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
@@ -981,7 +960,6 @@ if "SSLv3" in str(tlsVersions):
 
 if "TLSv1," in str(tlsVersions) or "TLSv1" == str(tlsVersions):
     vulnTLSv1Usage = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
-    print("TLSv1 found")
 
 if "TLSv1.1" in str(tlsVersions):
     vulnTLSv1_1Usage = '<b><FONT COLOR="#ff0000">Vulnerable</FONT></b>'
