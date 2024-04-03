@@ -865,7 +865,7 @@ print("\nReport Created!")
 #                                                   #
 #####################################################
 
-print("\nSearching for vulnerabilities\n")
+print("Searching for vulnerabilities ...")
 
 vulnNoSpf = "None"
 vulnNoDmarc = "None"
@@ -1214,4 +1214,4 @@ htmlBodyVulns = '''
 file = open("VulnReport.html", "w")
 file.writelines(htmlBodyVulns)
 
-print("\nVulnerability Report Created!")
+print("Vulnerability Report Created!")
